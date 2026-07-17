@@ -36,3 +36,12 @@
 # - 1 <= nums.length <= 3 * 10^4
 # - -100 <= nums[i] <= 100
 # - nums is sorted in non-decreasing order
+
+def remove_duplicates(nums):
+    pass
+
+
+if __name__ == '__main__':
+    nums = [1, 1, 2]
+    ans = remove_duplicates(nums)
+    print(ans)

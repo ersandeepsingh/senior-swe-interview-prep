@@ -33,3 +33,12 @@
 # Constraints:
 # - 3 <= nums.length <= 3000
 # - -10^5 <= nums[i] <= 10^5
+
+def three_sum(nums):
+    pass
+
+
+if __name__ == '__main__':
+    nums = [-1, 0, 1, 2, -1, -4]
+    ans = three_sum(nums)
+    print(ans)

@@ -28,3 +28,12 @@
 # - n == height.length
 # - 1 <= n <= 2 * 10^4
 # - 0 <= height[i] <= 10^5
+
+def trap(height):
+    pass
+
+
+if __name__ == '__main__':
+    height = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
+    ans = trap(height)
+    print(ans)

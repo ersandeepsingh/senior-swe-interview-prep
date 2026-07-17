@@ -37,3 +37,13 @@
 # - numbers is sorted in non-decreasing order
 # - -1000 <= target <= 1000
 # - Exactly one valid answer exists
+
+def two_sum(numbers, target):
+    pass
+
+
+if __name__ == '__main__':
+    numbers = [2, 7, 11, 15]
+    target = 9
+    ans = two_sum(numbers, target)
+    print(ans)

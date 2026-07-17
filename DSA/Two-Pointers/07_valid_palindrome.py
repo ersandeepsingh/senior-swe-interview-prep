@@ -36,3 +36,12 @@
 # Constraints:
 # - 1 <= s.length <= 2 * 10^5
 # - s consists only of printable ASCII characters
+
+def is_palindrome(s):
+    pass
+
+
+if __name__ == '__main__':
+    s = "A man, a plan, a canal: Panama"
+    ans = is_palindrome(s)
+    print(ans)

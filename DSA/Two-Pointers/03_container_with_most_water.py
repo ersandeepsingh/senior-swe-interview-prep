@@ -36,3 +36,12 @@
 # - n == height.length
 # - 2 <= n <= 10^5
 # - 0 <= height[i] <= 10^4
+
+def max_area(height):
+    pass
+
+
+if __name__ == '__main__':
+    height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
+    ans = max_area(height)
+    print(ans)

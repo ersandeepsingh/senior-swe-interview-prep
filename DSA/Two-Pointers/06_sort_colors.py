@@ -35,3 +35,12 @@
 # - n == nums.length
 # - 1 <= n <= 300
 # - nums[i] is either 0, 1, or 2
+
+def sort_colors(nums):
+    pass
+
+
+if __name__ == '__main__':
+    nums = [2, 0, 2, 1, 1, 0]
+    sort_colors(nums)
+    print(nums)

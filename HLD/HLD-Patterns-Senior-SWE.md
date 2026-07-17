@@ -9,14 +9,16 @@ Legend: 🟢 warm-up · 🟡 standard 45–60 min · 🔴 hard / senior-signal
 
 ## 1. Foundational Concepts (the vocabulary every answer leans on)
 
-- **CAP theorem** — Pick 2 of Consistency/Availability/Partition-tolerance → why a system chooses AP or CP under a partition.
-- **PACELC** — Else (no partition) trade latency vs consistency → Dynamo (PA/EL) vs. spanner (PC/EC).
-- **Consistency models** — Strong / eventual / causal / read-your-writes → session guarantees in a social feed.
-- **Latency vs throughput** — Response time vs. requests served → optimize p99 vs. QPS.
-- **Availability math** — Nines, SLA/SLO/SLI → 99.99% ≈ 52 min/yr downtime budget.
-- **Back-of-envelope estimation** — QPS, storage, bandwidth sizing → "1B users, 2 posts/day → X writes/s."
-- **Vertical vs horizontal scaling** — Scale up vs scale out → why we shard instead of buying a bigger box.
-- **Stateless vs stateful services** — Push state to stores → enable easy horizontal scaling.
+Deep-dives: [`01-Foundational-Concepts/`](01-Foundational-Concepts/README.md)
+
+- **[CAP theorem](01-Foundational-Concepts/01_cap_theorem.md)** — Pick 2 of Consistency/Availability/Partition-tolerance → why a system chooses AP or CP under a partition.
+- **[PACELC](01-Foundational-Concepts/02_pacelc.md)** — Else (no partition) trade latency vs consistency → Dynamo (PA/EL) vs. spanner (PC/EC).
+- **[Consistency models](01-Foundational-Concepts/03_consistency_models.md)** — Strong / eventual / causal / read-your-writes → session guarantees in a social feed.
+- **[Latency vs throughput](01-Foundational-Concepts/04_latency_vs_throughput.md)** — Response time vs. requests served → optimize p99 vs. QPS.
+- **[Availability math](01-Foundational-Concepts/05_availability_math.md)** — Nines, SLA/SLO/SLI → 99.99% ≈ 52 min/yr downtime budget.
+- **[Back-of-envelope estimation](01-Foundational-Concepts/06_back_of_envelope.md)** — QPS, storage, bandwidth sizing → "1B users, 2 posts/day → X writes/s."
+- **[Vertical vs horizontal scaling](01-Foundational-Concepts/07_vertical_vs_horizontal.md)** — Scale up vs scale out → why we shard instead of buying a bigger box.
+- **[Stateless vs stateful services](01-Foundational-Concepts/08_stateless_vs_stateful.md)** — Push state to stores → enable easy horizontal scaling.
 
 ## 2. Networking & Traffic Management
 

@@ -36,3 +36,13 @@
 # Constraints:
 # - 1 <= s.length, t.length <= 200
 # - s and t only contain lowercase letters and "#" characters
+
+def backspace_compare(s, t):
+    pass
+
+
+if __name__ == '__main__':
+    s = "ab#c"
+    t = "ad#c"
+    ans = backspace_compare(s, t)
+    print(ans)

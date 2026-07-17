@@ -5,9 +5,26 @@ LLD rounds test OOP modeling, design principles, and the *right* pattern applied
 
 Legend: 🟢 warm-up · 🟡 standard 45–60 min machine-coding · 🔴 hard / senior-signal
 
+Deep-dives (plain English + Python/Go + exercise) live in numbered folders next to this playbook:
+
+| # | Section | Folder |
+|---|---------|--------|
+| 1 | Design Principles | [01-Design-Principles/](01-Design-Principles/README.md) |
+| 2 | Creational Patterns | [02-Creational-Patterns/](02-Creational-Patterns/README.md) |
+| 3 | Structural Patterns | [03-Structural-Patterns/](03-Structural-Patterns/README.md) |
+| 4 | Behavioral Patterns | [04-Behavioral-Patterns/](04-Behavioral-Patterns/README.md) |
+| 5 | Concurrency Patterns | [05-Concurrency-Patterns/](05-Concurrency-Patterns/README.md) |
+| 6 | Core Machine-Coding | [06-Core-Machine-Coding/](06-Core-Machine-Coding/README.md) |
+| 7 | Systems & Services | [07-Systems-Services/](07-Systems-Services/README.md) |
+| 8 | Domain / Product | [08-Domain-Product/](08-Domain-Product/README.md) |
+| 9 | Cross-Cutting Concerns | [09-Cross-Cutting-Concerns/](09-Cross-Cutting-Concerns/README.md) |
+| 10 | Interview Round Playbook | [10-Interview-Round-Playbook/](10-Interview-Round-Playbook/README.md) |
+
 ---
 
 ## 1. Design Principles (the "why" behind every choice)
+
+Deep-dives: [01-Design-Principles/](01-Design-Principles/README.md)
 
 - **SOLID — Single Responsibility** — A class has one reason to change → split a `God` service into focused collaborators.
 - **SOLID — Open/Closed** — Extend behavior without editing existing code → add a new payment type via a new strategy, not an `if/else`.
@@ -21,6 +38,8 @@ Legend: 🟢 warm-up · 🟡 standard 45–60 min machine-coding · 🔴 hard / 
 
 ## 2. Creational Patterns (how objects come into existence)
 
+Deep-dives: [02-Creational-Patterns/](02-Creational-Patterns/README.md)
+
 - **Singleton** — One shared instance, safely → thread-safe config / connection manager.
 - **Factory Method** — Subclass decides which object to create → `NotificationFactory.create(type)`.
 - **Abstract Factory** — Families of related objects → cross-platform UI widget kit (Mac vs Windows).
@@ -31,6 +50,8 @@ Legend: 🟢 warm-up · 🟡 standard 45–60 min machine-coding · 🔴 hard / 
 
 ## 3. Structural Patterns (how objects compose)
 
+Deep-dives: [03-Structural-Patterns/](03-Structural-Patterns/README.md)
+
 - **Adapter** — Make incompatible interfaces work together → wrap a 3rd-party payment SDK to your interface.
 - **Decorator** — Add behavior at runtime without subclassing → add milk/sugar to a `Coffee`; add compression to a stream.
 - **Facade** — Simple front over a complex subsystem → one `VideoConverter` hiding codecs/filters.
@@ -40,6 +61,8 @@ Legend: 🟢 warm-up · 🟡 standard 45–60 min machine-coding · 🔴 hard / 
 - **Flyweight** — Share intrinsic state to save memory → glyph rendering, particles in a game.
 
 ## 4. Behavioral Patterns (how objects interact & delegate)
+
+Deep-dives: [04-Behavioral-Patterns/](04-Behavioral-Patterns/README.md)
 
 - **Strategy** — Interchangeable algorithms behind one interface → pluggable pricing / sorting / payment strategy.
 - **Observer** — Notify subscribers on state change → pub/sub, stock-price tickers, event listeners.
@@ -56,6 +79,8 @@ Legend: 🟢 warm-up · 🟡 standard 45–60 min machine-coding · 🔴 hard / 
 
 ## 5. Concurrency Patterns (senior-critical — often the deciding round)
 
+Deep-dives: [05-Concurrency-Patterns/](05-Concurrency-Patterns/README.md)
+
 - **Producer–Consumer** — Decouple work via a bounded buffer → job queue with blocking queue.
 - **Thread Pool / Executor** — Reuse worker threads → task scheduler / web server workers.
 - **Read-Write Lock** — Many readers, one writer → cache with concurrent reads.
@@ -66,6 +91,8 @@ Legend: 🟢 warm-up · 🟡 standard 45–60 min machine-coding · 🔴 hard / 
 - **Actor model** — State owned by one actor, message-passing → each account processes its own txns.
 
 ## 6. Machine-Coding Problems — Core / Most-Asked
+
+Deep-dives: [06-Core-Machine-Coding/](06-Core-Machine-Coding/README.md)
 
 - **Parking Lot** — Multi-level lot: spot allocation, ticketing, pricing → State + Strategy + Factory. 🟡
 - **Elevator System** — Multi-elevator scheduling & request dispatch → State + Strategy (scheduling). 🔴
@@ -78,6 +105,8 @@ Legend: 🟢 warm-up · 🟡 standard 45–60 min machine-coding · 🔴 hard / 
 - **Tic-Tac-Toe / Chess** — Board, moves, rules, win-check → Strategy (rules) + State. 🟡🔴
 
 ## 7. Machine-Coding Problems — Systems & Services
+
+Deep-dives: [07-Systems-Services/](07-Systems-Services/README.md)
 
 - **Rate Limiter** — Token bucket / sliding window / fixed window → Strategy per algorithm. 🟡
 - **In-Memory Key-Value Store** — get/put with TTL & eviction → composition + eviction policy. 🟡
@@ -93,6 +122,8 @@ Legend: 🟢 warm-up · 🟡 standard 45–60 min machine-coding · 🔴 hard / 
 
 ## 8. Machine-Coding Problems — Domain / Product
 
+Deep-dives: [08-Domain-Product/](08-Domain-Product/README.md)
+
 - **Food Delivery (Swiggy/Zomato)** — Restaurants, orders, delivery assignment → Strategy + Observer. 🔴
 - **Ride Hailing (Uber/Ola)** — Driver matching, pricing, trip state → State + Strategy (matching/pricing). 🔴
 - **E-commerce Cart & Checkout** — Cart, discounts, payment, inventory → Strategy (discount/payment) + State (order). 🔴
@@ -107,6 +138,8 @@ Legend: 🟢 warm-up · 🟡 standard 45–60 min machine-coding · 🔴 hard / 
 
 ## 9. Cross-Cutting Concerns to Model Well (senior signal)
 
+Deep-dives: [09-Cross-Cutting-Concerns/](09-Cross-Cutting-Concerns/README.md)
+
 - **Extensibility seams** — Where will requirements change? Put a Strategy/Factory there before you're asked.
 - **Concurrency & consistency** — Seat/inventory locking, idempotency, race conditions → call these out proactively.
 - **Error handling & validation** — Domain exceptions vs. return codes; fail fast at boundaries.
@@ -117,6 +150,8 @@ Legend: 🟢 warm-up · 🟡 standard 45–60 min machine-coding · 🔴 hard / 
 ---
 
 ## How to run an LLD round (senior playbook)
+
+Step-by-step guides + mock rubric: [10-Interview-Round-Playbook/](10-Interview-Round-Playbook/README.md)
 
 1. **Clarify & scope (5 min):** nail functional requirements, then explicitly cut scope ("I'll skip real payments/persistence, focus on the domain model").
 2. **Identify entities & relationships (10 min):** nouns → classes, verbs → methods; state the core objects and how they relate out loud.
