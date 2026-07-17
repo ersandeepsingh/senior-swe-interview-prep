@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.env
+.venv/
+venv/
+ENV/
+
+# OS / IDE
+.DS_Store
+.idea/
+*.swp
+*.swo
+
+# Local-only (keep launch.json if you want — uncomment to ignore all VS Code)
+# .vscode/
