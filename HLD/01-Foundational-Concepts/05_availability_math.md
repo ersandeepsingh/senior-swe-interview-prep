@@ -10,8 +10,6 @@
 | **SLO** | Eng + product | The *target* (e.g. 99.9% success over 30 days) |
 | **SLA** | Legal / sales | The *contract* with customers (credits if you miss) |
 
-![Availability math: SLI to SLO to SLA, nines, and redundancy](./assets/availability_math.png)
-
 ```text
   Measure (SLI)  →  Target (SLO)  →  Promise (SLA)
      "99.95% of     "We aim for      "If < 99.9%,

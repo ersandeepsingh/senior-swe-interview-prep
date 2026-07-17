@@ -14,5 +14,3 @@ The vocabulary every HLD answer leans on. Read these before diving into classic 
 | 08 | [Stateless vs stateful services](08_stateless_vs_stateful.md) | Push state to stores → easy horizontal scale |
 
 **How to use:** For each file — read Plain English → diagram → trade-offs → say the interview trigger phrase out loud → do the Exercise without peeking at notes.
-
-Diagrams live in [`assets/`](assets/) (PNG for now; GIF welcome if you drop one in).

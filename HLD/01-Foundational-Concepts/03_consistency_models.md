@@ -19,8 +19,6 @@ After you write data, *who* sees it and *when*?
 
 ## Diagram: visibility timeline
 
-![Consistency models visibility timeline](./assets/consistency_models.png)
-
 ```text
   t0  User A writes post P  ──► primary ACK
   t1  User A refreshes

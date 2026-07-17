@@ -14,8 +14,6 @@ Three letters:
 
 On a single machine, CAP barely matters. Across machines and regions, **partitions happen** (network blips, DC isolation). So the real choice is: **CP or AP**.
 
-![CAP: under a partition choose CP or AP](./assets/cap_partition.png)
-
 ```text
                     ┌─────────────────┐
                     │  Network split  │

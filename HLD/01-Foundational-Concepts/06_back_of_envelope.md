@@ -13,8 +13,6 @@ In the first 5 minutes of an HLD round, estimate:
 
 You don’t need exact math — **orders of magnitude** (10³, 10⁶) that drive decisions.
 
-![Back-of-envelope estimation flow from requirements to architecture choices](./assets/back_of_envelope.png)
-
 ```text
   Requirements → Estimates → Architecture choices
        │              │              │

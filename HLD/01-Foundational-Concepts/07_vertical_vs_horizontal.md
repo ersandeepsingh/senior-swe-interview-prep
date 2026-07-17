@@ -11,8 +11,6 @@
 | Ceiling | Hardware max; expensive top-end | Much higher (in theory) |
 | Failure mode | That one box dies → big outage | Lose one node → partial capacity |
 
-![Vertical scaling grows one box; horizontal scaling adds more boxes](./assets/vertical_vs_horizontal.png)
-
 ```text
   Vertical                         Horizontal
   ┌─────────────┐                  ┌────┐ ┌────┐ ┌────┐

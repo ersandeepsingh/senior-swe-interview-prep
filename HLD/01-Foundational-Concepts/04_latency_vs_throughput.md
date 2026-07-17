@@ -9,8 +9,6 @@
 | **Latency** | How slow was *this* request? | ms (often **p50 / p95 / p99**) |
 | **Throughput** | How much work can the system do? | QPS, RPS, msgs/sec, MB/s |
 
-![Latency measures one request; throughput measures requests per second](./assets/latency_vs_throughput.png)
-
 ```text
   One request journey
   Client ──► LB ──► Service ──► DB ──► Response

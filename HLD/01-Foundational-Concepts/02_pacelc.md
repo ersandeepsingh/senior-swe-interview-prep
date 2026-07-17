@@ -8,8 +8,6 @@ CAP only talks about the bad day (partition). Most of the time the network is fi
 
 **PACELC** adds the normal day:
 
-![PACELC decision tree: partition chooses A/C, else chooses L/C](./assets/pacelc.png)
-
 ```text
         Is the network partitioned?
               │

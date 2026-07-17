@@ -10,8 +10,6 @@
 | Restart | Lose almost nothing local | May lose sessions / buffers / leadership |
 | Scale-out | Add boxes behind LB — done | Rebalance state, sticky sessions, or careful protocols |
 
-![Stateless API tier with shared store versus stateful WebSocket tier](./assets/stateless_vs_stateful.png)
-
 ```text
   Stateless app tier                    Stateful connection tier
   ┌────┐ ┌────┐ ┌────┐                 ┌──────────────────┐
