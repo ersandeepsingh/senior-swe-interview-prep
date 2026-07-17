@@ -17,3 +17,6 @@ ENV/
 
 # Local-only (keep launch.json if you want — uncomment to ignore all VS Code)
 # .vscode/
+
+# Keep company-specific interview notes private / local only
+DSA/Previous Asks/

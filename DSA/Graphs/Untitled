@@ -1,1 +1,0 @@
-indegree = {i: 0 for i in range(len(adj_list) + 1)}

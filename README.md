@@ -23,8 +23,7 @@ DSA/
 ├── Graphs/
 ├── Trees/
 ├── DP/
-├── misc/                    # Cross-cutting snippets (LRU, binary search, etc.)
-└── Previous Asks/           # Past interview-style problems (company-specific)
+└── misc/                    # Cross-cutting snippets (LRU, binary search, etc.)
 ```
 
 Pattern playbooks use a difficulty legend:
@@ -102,12 +101,6 @@ This is a personal prep repo. If you fork it:
 - Keep **one primary pattern** per playbook entry
 - Add solutions under the correct `DSA/<pattern>/` folder
 - Prefer readable Python over golf; add a short docstring with problem link and complexity
-
----
-
-## Disclaimer
-
-`DSA/Previous Asks/` may contain problems from real interviews. Use ethically: learn the pattern, do not leak confidential interview content publicly.
 
 ---
 
