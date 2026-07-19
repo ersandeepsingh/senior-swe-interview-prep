@@ -30,9 +30,38 @@
 # - nums is a non-decreasing array
 # - -10^9 <= target <= 10^9
 
-def search_range(nums, target):
-    pass
+import re
 
+
+def search_range(nums, target):
+    left = 0
+    right = len(nums)-1
+    result = [-1,-1]
+    while left <= right:
+        mid = left + (right-left)//2
+        if nums[mid] == target:
+            break
+        elif nums[mid] < target:
+            left = mid+1
+        else:
+            right = mid-1
+    # Ensure that target was actually found
+    if nums[mid] != target:
+        return [-1, -1]
+    
+    # Find the left boundary (first occurrence)
+    l = mid
+    while l - 1 >= 0 and nums[l - 1] == target:
+        l -= 1
+    result[0] = l
+
+    # Find the right boundary (last occurrence)
+    r = mid
+    while r + 1 < len(nums) and nums[r + 1] == target:
+        r += 1
+    result[1] = r
+    
+    return result
 
 if __name__ == '__main__':
     nums = [5, 7, 7, 8, 8, 10]
