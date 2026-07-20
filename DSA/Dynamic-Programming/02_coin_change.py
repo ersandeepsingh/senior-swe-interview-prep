@@ -31,9 +31,30 @@
 # - 1 <= coins[i] <= 2^31 - 1
 # - 0 <= amount <= 10^4
 
-def coin_change(coins, amount):
-    pass
+# Simple naive recursive solution to try all coin combinations.
+def coin_change_naive_recursive(coins, amount):
+    if amount == 0:
+        return 0
+    res = float('inf')
+    for c in coins:
+        if c <= amount:
+            sub_res = coin_change_naive_recursive(coins, amount - c)
+            if sub_res != -1:
+                res = min(res, sub_res + 1)
+    return res if res != float('inf') else -1
 
+#  Optimised DP
+def coin_change(coins, amount):
+    INF = math.inf
+    dp = [INF]*(amount+1)
+    dp[0] = 0
+    for i in range(1, amount+1):
+        for c in coins:
+            if i>=c:
+                dp[i] = min(dp[i], dp[i-c]+1)
+        
+    return dp[amount]
+                
 
 if __name__ == '__main__':
     coins = [1, 2, 5]
