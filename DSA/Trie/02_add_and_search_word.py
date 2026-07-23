@@ -26,16 +26,39 @@
 # - word in search consist of '.' or lowercase English letters
 # - There will be at most 2 dots in word for search queries
 # - At most 10^4 calls will be made to addWord and search
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_end = False
 
 class WordDictionary:
     def __init__(self):
-        pass
+        self.root = TrieNode()
 
     def add_word(self, word):
-        pass
+        node = self.root
+        for ch in word:
+            if ch not in node.children:
+                node.children[ch] = TrieNode()
+            node = node.children[ch]
+        node.is_end = True
 
     def search(self, word):
-        pass
+        def dfs(idx, node):
+            if idx == len(word):
+                return node.is_end
+            ch = word[idx]
+            if ch == '.':
+                for child in node.children.values():
+                    if dfs(idx + 1, child):
+                        return True
+                return False
+            else:
+                if ch in node.children:
+                    return dfs(idx + 1, node.children[ch])
+                else:
+                    return False
+        return dfs(0, self.root)
 
 
 if __name__ == '__main__':

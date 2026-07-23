@@ -28,18 +28,38 @@
 # - word and prefix consist only of lowercase English letters
 # - At most 3 * 10^4 calls in total will be made to insert, search, and startsWith
 
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_end = False
+
 class Trie:
     def __init__(self):
-        pass
+        self.root = TrieNode()
 
     def insert(self, word):
-        pass
+        node = self.root
+        for ch in word:
+            if ch not in node.children:
+                node.children[ch] = TrieNode()
+            node = node.children[ch]
+        node.is_end = True
 
     def search(self, word):
-        pass
+        node = self.root
+        for ch in word:
+            if ch not in node.children:
+                return False
+            node = node.children[ch]
+        return node.is_end
 
     def starts_with(self, prefix):
-        pass
+        node = self.root
+        for ch in prefix:
+            if ch not in node.children:
+                return False
+            node = node.children[ch]
+        return True
 
 
 if __name__ == '__main__':
