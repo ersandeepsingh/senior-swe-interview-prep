@@ -33,9 +33,20 @@
 # - 1 <= points.length <= 10^5
 # - points[i].length == 2
 # - -2^31 <= x_start < x_end <= 2^31 - 1
-
+import math
 def find_min_arrow_shots(points):
-    pass
+    if not points:
+        return 0
+    points.sort(key=lambda x: x[1])  # Sort by end x-coordinate
+    min_arrow = 1
+    prev_end = points[0][1]
+    for start, end in points[1:]:
+        if start > prev_end:
+            min_arrow += 1
+            prev_end = end
+    return min_arrow
+      
+    
 
 
 if __name__ == '__main__':
