@@ -29,10 +29,21 @@
 # - 1 <= target <= 10^9
 # - 1 <= nums.length <= 10^5
 # - 1 <= nums[i] <= 10^4
-
+import math
 def min_subarray_len(target, nums):
-    pass
-
+    if sum(nums)<target:
+        return 0
+    left = 0
+    curr_sum = 0
+    min_len = math.inf
+    for right in range(len(nums)):
+        curr_sum += nums[right]
+        while curr_sum>=target:
+            min_len = min(min_len, right-left+1)
+            curr_sum -= nums[left]
+            left += 1
+    return min_len   
+            
 
 if __name__ == '__main__':
     target = 7

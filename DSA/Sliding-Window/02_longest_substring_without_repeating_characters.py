@@ -30,8 +30,15 @@
 # - s consists of English letters, digits, symbols and spaces
 
 def length_of_longest_substring(s):
-    pass
-
+    cache = {}
+    max_length = 0
+    left = 0
+    for right in range(len(s)):
+        if s[right] in cache and cache[s[right]] >= left:
+            left = cache[s[right]] + 1
+        cache[s[right]] = right
+        max_length = max(max_length, right - left + 1)
+    return max_length
 
 if __name__ == '__main__':
     s = "abcabcbb"
