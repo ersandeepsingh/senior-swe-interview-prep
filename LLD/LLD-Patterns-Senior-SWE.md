@@ -151,6 +151,8 @@ Deep-dives: [09-Cross-Cutting-Concerns/](09-Cross-Cutting-Concerns/README.md)
 
 ## How to run an LLD round (senior playbook)
 
+**One-pager approach:** [LLD-Approach.md](LLD-Approach.md) — clarify → entities → patterns → skeleton → concurrency/testing.
+
 Step-by-step guides + mock rubric: [10-Interview-Round-Playbook/](10-Interview-Round-Playbook/README.md)
 
 1. **Clarify & scope (5 min):** nail functional requirements, then explicitly cut scope ("I'll skip real payments/persistence, focus on the domain model").

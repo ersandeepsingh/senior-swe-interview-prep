@@ -3,6 +3,8 @@
 Organized by **category → concept/pattern → 1-line intent + where it shows up**.
 HLD rounds test whether you can turn fuzzy requirements into a scalable, available, consistent architecture and defend the trade-offs. Each classic design problem is mapped to its **most critical** concept (the crux the interviewer is really probing), not every building block it touches.
 
+**How to run the round:** [HLD-Approach.md](HLD-Approach.md) — step-by-step interview approach (clarify → estimate → API/data → HLD → deep dive → trade-offs).
+
 Legend: 🟢 warm-up · 🟡 standard 45–60 min · 🔴 hard / senior-signal
 
 ---
