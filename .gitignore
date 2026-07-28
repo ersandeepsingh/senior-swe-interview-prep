@@ -14,7 +14,7 @@ ENV/
 .idea/
 *.swp
 *.swo
-
+test.py
 # Local-only (keep launch.json if you want — uncomment to ignore all VS Code)
 # .vscode/
 

@@ -142,37 +142,78 @@ Draw a **simple** diagram that works for the happy path. Start boring; complexit
 
 ### Default skeleton (most problems)
 
+Start with this entry path, then attach storage and async pieces:
+
 ```text
-Client → DNS/CDN → Load Balancer → API / App servers (stateless)
-                         ↓
-              Cache (Redis)     DB (primary + replicas)
-                         ↓
-              Object store / Queue / Search  (only if needed)
+Client
+  → DNS
+  → CDN                    [optional: static assets, images, videos]
+  → Load Balancer          [distribute traffic + health checks]
+  → API Gateway            [auth, rate limit, routing]
+  → App / Services         [stateless business logic]
+```
+
+Then attach data and async dependencies under the app tier:
+
+```text
+App / Services
+  ├─ Cache (Redis)                [read acceleration]
+  ├─ Primary DB + Read Replicas   [source of truth]
+  ├─ Message Queue / Stream       [optional: async work]
+  │     └─ Workers
+  ├─ Search Index                 [optional: Elasticsearch]
+  └─ Object Storage               [optional: S3 for media/files]
+```
+
+**Entry order to say out loud:**
+> “DNS → CDN if media/static → Load Balancer for HA → API Gateway for auth/rate-limit/routing → stateless services.”
+
+**Exception:** serverless often goes `Client → API Gateway → Lambda` (no separate LB).
+
+### Draw it in two passes
+
+**Pass A — minimal (most interviews start here):**
+
+```text
+Client → LB → API Gateway → Service → DB
+                              └─ Cache
+```
+
+**Pass B — add only what the problem needs:**
+
+```text
+Client → DNS → CDN → LB → API Gateway → Services
+                                          ├─ Cache
+                                          ├─ DB (primary + replicas)
+                                          ├─ Queue → Workers
+                                          ├─ Search
+                                          └─ Object Storage
 ```
 
 ### How to narrate while drawing
 
-1. Client hits LB / API gateway
-2. Stateless app tier handles auth + business logic
-3. Write path → DB (and maybe queue for async work)
-4. Read path → cache, then DB
-5. Heavy/async work → workers + queue
-6. Media → object storage + CDN
+1. Entry: DNS → (CDN) → LB → API Gateway → services
+2. LB spreads traffic; gateway handles auth, rate limit, routing
+3. Services stay **stateless**
+4. **Read path:** Service → Cache → DB replica/primary
+5. **Write path:** Service → DB primary → (optional) emit event to queue
+6. **Async path:** Queue → Workers → DB / cache / email / search index
+7. **Media path:** upload → Object Storage; download via CDN
 
 ### Rules
 
-- **One happy path end-to-end** before sharding Kafka and multi-region
-- Label arrows: “write”, “read”, “async”
-- Prefer **stateless** app servers so you can scale horizontally
-- Name 1–2 concrete technologies only when helpful (“Postgres + Redis”); don’t name-drop the whole AWS catalog
+- **One happy path end-to-end** before Kafka, multi-region, or fancy graphs
+- Label arrows: `read`, `write`, `async`
+- Keep app/services **stateless**; push state to DB/cache
+- Name 1–2 technologies only when useful (“Postgres + Redis”), not the whole cloud catalog
+- Add CDN / Queue / Search / Object Storage **only if the problem needs them**
 
 ### Example (URL shortener — first cut)
 
 ```text
-Browser → LB → URL Service
-                  ├─ generate code
-                  ├─ write mapping → DB
-                  └─ on redirect: Cache → DB → 302 Location
+Client → LB → API Gateway → URL Service
+                               ├─ create: write mapping → DB
+                               └─ redirect: Cache → DB → 302 Location
 ```
 
 ---
