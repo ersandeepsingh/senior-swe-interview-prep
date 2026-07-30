@@ -37,8 +37,29 @@
 # - nums[i] is either 0, 1, or 2
 
 def sort_colors(nums):
-    pass
-
+    # 1. Initialize low = 0, mid = 0, high = len(nums) - 1.
+    # 2. While mid <= high:
+    #    - If nums[mid] == 0:
+    #          swap nums[low] and nums[mid], increment low and mid.
+    #    - If nums[mid] == 1:
+    #          just increment mid.
+    #    - If nums[mid] == 2:
+    #          swap nums[mid] and nums[high], decrement high.
+    #
+    # This one-pass approach sorts the colors in-place with constant space.
+    low = 0
+    mid = 0
+    high = len(nums) - 1
+    while mid<=high:
+        if nums[mid] == 0:
+            nums[mid], nums[low] = nums[low], nums[mid]
+            low+=1
+            mid+=1
+        elif nums[mid] == 1:
+            mid+=1
+        else:
+            nums[mid], nums[high] = nums[high], nums[mid]
+            high-=1
 
 if __name__ == '__main__':
     nums = [2, 0, 2, 1, 1, 0]
