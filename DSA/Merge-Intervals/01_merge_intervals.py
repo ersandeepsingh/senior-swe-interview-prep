@@ -26,8 +26,22 @@
 # - 0 <= start_i <= end_i <= 10^4
 
 def merge(intervals):
-    pass
-
+    intervals.sort(key=lambda x:x[0])
+    result = []
+    left = 0
+    for right in range(1, len(intervals)):
+        # If the current interval does not overlap with previous, append previous to result
+        if intervals[right][0] > intervals[left][1]:
+            result.append(intervals[left])
+            left = right
+        else:
+            # Merge intervals by updating the end
+            intervals[left][1] = max(intervals[left][1], intervals[right][1])
+    # Append the last interval
+    result.append(intervals[left])
+   
+   
+    return result
 
 if __name__ == '__main__':
     intervals = [[1, 3], [2, 6], [8, 10], [15, 18]]

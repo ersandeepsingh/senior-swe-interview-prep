@@ -36,7 +36,31 @@
 # - end_j < start_{j+1}
 
 def interval_intersection(first_list, second_list):
-    pass
+    first = second = 0
+    length1 = len(first_list)
+    # Hint: Use two pointers, one for each interval list. Move through both lists, finding the overlap (intersection) between the current intervals.
+    # If there's an intersection, add it to the result. Always advance the pointer for the interval that ends first.
+    length2 = len(second_list)
+    result = []
+    while first < length1 and second < length2:
+        a_start, a_end = first_list[first]
+        b_start, b_end = second_list[second]
+
+        # Find the overlap between the two intervals
+        start = max(a_start, b_start)
+        end = min(a_end, b_end)
+
+        # If they overlap, add to result
+        if start <= end:
+            result.append([start, end])
+
+        # Advance the pointer for the interval that ends first
+        if a_end < b_end:
+            first += 1
+        else:
+            second += 1
+    return result
+ 
 
 
 if __name__ == '__main__':

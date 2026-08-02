@@ -28,8 +28,31 @@
 # - 1 <= intervals.length <= 10^4
 # - 0 <= start_i < end_i <= 10^6
 
+
+import heapq
+
+
 def min_meeting_rooms(intervals):
-    pass
+    # To solve this, we use a min-heap to keep track of end times of ongoing meetings.
+    # Sort the intervals by start time (since we care when meetings begin).
+    if not intervals:
+        return 0
+
+    intervals.sort(key=lambda x: x[0])
+    # min_heap keeps the end time of meetings currently occupying rooms
+    min_heap = []
+    
+    for interval in intervals:
+        # If the room due to free up the earliest is free before the meeting starts, reuse it
+        if min_heap and interval[0] >= min_heap[0]:
+            heapq.heappop(min_heap)  # Remove the room that got free
+        # Allocate a new room (heapq always pushes)
+        heapq.heappush(min_heap, interval[1])
+        # The heap size tells us the number of rooms occupied at this moment
+
+    # The size of the heap is the min number of rooms needed for all meetings
+    return len(min_heap)
+        
 
 
 if __name__ == '__main__':

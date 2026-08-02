@@ -26,8 +26,11 @@
 # - 0 <= start_i < end_i <= 10^6
 
 def can_attend_meetings(intervals):
-    pass
-
+    intervals.sort(key=lambda x:x[0])
+    for i in range(len(intervals)-1):
+        if intervals[i][1] > intervals[i+1][0]:
+            return False
+    return True
 
 if __name__ == '__main__':
     intervals = [[0, 30], [5, 10], [15, 20]]
