@@ -36,7 +36,26 @@
 # - -5 * 10^4 <= start_i < end_i <= 5 * 10^4
 
 def erase_overlap_intervals(intervals):
-    pass
+    # If the list is empty or only one interval, no need to remove any interval
+    if not intervals or len(intervals) == 1:
+        return 0
+
+    # Sort the intervals by their end time
+    intervals.sort(key=lambda x: x[1])
+
+    # Initialize the end of the last added interval to the end of the first interval
+    end = intervals[0][1]
+    count = 0  # Count of intervals to remove
+
+    # Iterate over the intervals starting from the second
+    for i in range(1, len(intervals)):
+        # If the current interval overlaps with the previous, we need to remove one
+        if intervals[i][0] < end:
+            count += 1  # Increment removal count
+        else:
+            # If no overlap, update the end to the end of the current interval
+            end = intervals[i][1]
+    return count
 
 
 if __name__ == '__main__':
