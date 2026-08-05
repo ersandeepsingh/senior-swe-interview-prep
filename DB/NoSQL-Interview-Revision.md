@@ -10,14 +10,18 @@ Basics → advanced, focused on the most frequently asked interview questions. E
 "Not Only SQL" — a family of non-relational databases built for scale, flexible schemas, and high write/read throughput that traditional relational DBs struggle with at web scale. They typically scale horizontally and relax some SQL guarantees (like strict schema or immediate consistency) for performance and availability.
 
 **Q2. What are the main types of NoSQL databases?**
-| Type | Model | Examples | Good for |
-|---|---|---|---|
-| Key-Value | key → opaque value | Redis, DynamoDB, Riak | caching, sessions, simple lookups |
-| Document | key → JSON-like document | MongoDB, Couchbase | flexible/nested app data |
-| Wide-column | rows with dynamic columns, grouped in column families | Cassandra, HBase, Bigtable | huge write volumes, time-series |
-| Graph | nodes + edges | Neo4j, Neptune | relationship-heavy queries |
+
+
+| Type        | Model                                                 | Examples                   | Good for                          |
+| ----------- | ----------------------------------------------------- | -------------------------- | --------------------------------- |
+| Key-Value   | key → opaque value                                    | Redis, DynamoDB, Riak      | caching, sessions, simple lookups |
+| Document    | key → JSON-like document                              | MongoDB, Couchbase         | flexible/nested app data          |
+| Wide-column | rows with dynamic columns, grouped in column families | Cassandra, HBase, Bigtable | huge write volumes, time-series   |
+| Graph       | nodes + edges                                         | Neo4j, Neptune             | relationship-heavy queries        |
+
 
 **Q3. SQL vs NoSQL — key differences?**
+
 - **Schema:** SQL fixed/rigid; NoSQL flexible/dynamic.
 - **Scaling:** SQL usually vertical (+read replicas); NoSQL horizontal by design.
 - **Joins:** SQL native; NoSQL usually none (denormalize instead).
@@ -29,10 +33,13 @@ When you have huge scale/throughput, flexible or rapidly changing schema, simple
 
 ---
 
+
+
 ## B. CAP, BASE & Consistency
 
 **Q5. Explain the CAP theorem in the NoSQL context.**
 Under a network partition, you can guarantee **Consistency** or **Availability**, not both.
+
 - **CP** systems (e.g., MongoDB default, HBase) sacrifice availability to stay consistent.
 - **AP** systems (e.g., Cassandra, DynamoDB, Riak) stay available and reconcile later (eventual consistency).
 
@@ -48,6 +55,8 @@ Example (N=3): `W=QUORUM(2), R=QUORUM(2)` → strong; `W=1, R=1` → fast but po
 
 ---
 
+
+
 ## C. Key-Value Stores (Redis / DynamoDB)
 
 **Q9. What is a key-value store and when is it ideal?**
@@ -58,6 +67,7 @@ It's in-memory (RAM) and single-threaded for command execution (no lock contenti
 Example uses: sorted set → leaderboard; list → job queue; string+TTL → cache; ZSET → rate limiter.
 
 **Q11. How does Redis handle persistence?**
+
 - **RDB:** periodic point-in-time snapshots (compact, risk losing recent writes).
 - **AOF:** append-only log of every write (more durable, larger/slower).
 Often both are used together.
@@ -67,15 +77,19 @@ Design around **access patterns**, not entities. Choose a good **partition key**
 
 ---
 
+
+
 ## D. Document Stores (MongoDB)
 
 **Q13. What is a document database?**
 Stores semi-structured documents (BSON/JSON) with nested fields and arrays. Each document is self-contained, and documents in a collection can have different fields (flexible schema).
+
 ```json
 { "_id": 1, "name": "Sam", "orders": [ {"id": 991, "total": 50} ] }
 ```
 
 **Q14. Embedding vs referencing — the core modeling decision.**
+
 - **Embed** related data inside a document when it's accessed together and bounded in size (one-to-few). Fast reads, no joins.
 - **Reference** (store an ID pointing to another document) for one-to-many/large or independently-changing data, to avoid huge documents and duplication.
 
@@ -86,6 +100,7 @@ Yes-ish: `$lookup` in the aggregation pipeline does left-outer-join-like operati
 
 **Q16. What is the aggregation pipeline?**
 A multi-stage data-processing framework (`$match`, `$group`, `$sort`, `$project`, `$lookup`) — MongoDB's analog to complex SQL queries.
+
 ```js
 db.orders.aggregate([
   { $match: { status: "paid" } },
@@ -98,6 +113,8 @@ db.orders.aggregate([
 
 ---
 
+
+
 ## E. Wide-Column Stores (Cassandra)
 
 **Q18. What is a wide-column store?**
@@ -107,8 +124,10 @@ Data is stored in rows identified by a key, but each row can have a huge, dynami
 Cassandra has no joins and limited ad-hoc querying. You design tables to serve specific queries — often duplicating data across multiple tables (one per query pattern). You must know your queries before designing the schema.
 
 **Q20. Explain partition key vs clustering key in Cassandra.**
+
 - **Partition key:** decides which node stores the row (distribution). Queries must include it.
 - **Clustering key:** orders rows *within* a partition (enables range scans/sorting).
+
 ```
 PRIMARY KEY ((user_id), created_at)
 -- partition by user_id, rows sorted by created_at within each user
@@ -122,6 +141,8 @@ Peer-to-peer (no master), data replicated to multiple nodes, gossip protocol for
 
 ---
 
+
+
 ## F. Graph Databases (Neo4j)
 
 **Q23. What is a graph database and when is it the right choice?**
@@ -132,6 +153,8 @@ Deep/variable-length traversals ("friends of friends of friends") require many e
 Example (Cypher): `MATCH (a:Person)-[:FRIEND*2]->(fof) WHERE a.name='Sam' RETURN fof`.
 
 ---
+
+
 
 ## G. Modeling, Indexing & Operations
 
@@ -155,10 +178,13 @@ Time-to-live auto-expires records after a set duration — perfect for caches, s
 
 ---
 
+
+
 ## H. Comparison & Decision Questions (senior favorites)
 
 **Q31. "You're designing X — SQL or NoSQL, and which NoSQL?" How do you reason?**
 Anchor on **access patterns + consistency needs + scale**:
+
 - Complex relationships/transactions, moderate scale → **SQL**.
 - Simple key lookups, caching, sessions → **key-value (Redis)**.
 - Flexible nested app documents, varied queries → **document (MongoDB)**.
@@ -176,6 +202,8 @@ Patterns like **CDC** (change data capture) streaming DB changes, the **outbox p
 
 ---
 
+
+
 ## I. Rapid-fire one-liners
 
 - **Sharding vs replication:** sharding splits data (scale writes/storage); replication copies data (HA + read scaling). Most systems do both.
@@ -189,7 +217,10 @@ Patterns like **CDC** (change data capture) streaming DB changes, the **outbox p
 
 ---
 
+
+
 ## Most-asked design/scenario questions to practice
+
 1. Design a data model for an e-commerce catalog in MongoDB (embed vs reference).
 2. Design a Cassandra schema for time-series/IoT data (partition + clustering keys).
 3. When would you pick DynamoDB over MongoDB (and vice versa)?
@@ -198,3 +229,59 @@ Patterns like **CDC** (change data capture) streaming DB changes, the **outbox p
 6. Model a social network's "friends of friends" — why a graph DB?
 7. How do you prevent hot partitions at scale?
 8. SQL vs NoSQL for a banking ledger — defend your choice.
+
+
+
+### How to debug MongoDB when its performance is degraded (Step-by-step)
+
+1. **Confirm the problem is DB-side:**
+   - Is the app, network, or cache slow — or is MongoDB actually the bottleneck? Check end-to-end latency breakdown if available.
+
+2. **Check server and DB health:**
+   - Run `mongostat` and `mongotop` to see basic metrics: inserts, queries, updates, flushes, locking, and collection-level activity.
+
+3. **Look for obvious bottlenecks:**
+   - Is **CPU**, **RAM**, or **disk I/O** spiking on the MongoDB box (via `top`, `htop`, `iostat`, or cloud metrics)?
+   - Is **swap** being used? That’s bad — MongoDB needs to stay in RAM.
+
+4. **Check for slow operations:**
+   - Look in the **MongoDB logs** (`/var/log/mongodb/mongod.log` by default) for `"slow query"` entries (control with `slowms`).
+   - You can also run:  
+     ```js
+     db.system.profile.find({ millis: { $gt: 100 } }).sort({ ts: -1 }).limit(10)
+     ```
+     (Requires **profiling** to be on.)
+
+5. **Identify top slow queries:**
+   - Use the **Atlas Performance Advisor** (if in Atlas), or manually aggregate `system.profile` to see most frequent/slow ops.
+
+6. **Explain the slowest queries:**
+   - Run `.explain("executionStats")` on the worst-performing operations.  
+     Example:
+     ```js
+     db.orders.find({ user_id: X }).sort({ created_at: -1 }).limit(20).explain("executionStats")
+     ```
+   - Look for **COLLSCAN** (collection scan) = no useful index.
+
+7. **Check your indexes:**
+   - Run `db.collection.getIndexes()` — are there missing or suboptimal indexes for common queries? Slow queries often are missing indexes, or using them inefficiently.
+
+8. **Check write performance:**
+   - Are there lots of `update`, `insert`, or `delete` operations waiting? Are **write locks** high?
+   - In logs or `mongostat`, high `locked %` (pre-4.0) is bad.
+
+9. **Monitor replication/cluster state (if sharded/replicated):**
+   - Are there replication lags? Run `rs.status()` for replica sets.
+   - In a sharded cluster: are certain shards "hotter" than others (=unbalanced workload)? (`db.collection.getShardDistribution()`)
+
+10. **Look for hardware/resource problems:**
+    - Is storage nearly full? Any alerts from the host/VM/cloud provider?
+    - Is the working set (hot data) able to fit in RAM?
+    - Any recent changes or spikes (schema, deploys, traffic)?
+
+**Summary:**  
+> Always start with high-level system checks, then drill down: slow queries → missing indexes → resource exhaustion → sharding/replication issues.
+
+**If you fix a slow query, always re-measure to confirm improvement.**
+
+---

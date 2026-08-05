@@ -25,7 +25,42 @@
 # - -10^4 <= nums[i] <= 10^4
 
 def length_of_lis(nums):
-    pass
+    dp = [1] * len(nums)
+    for i in range(len(nums)):
+        for j in range(i):
+            if nums[j]<nums[i]:
+                dp[i] = max(dp[i],1+dp[j])
+    
+    return max(dp)
+                
+def print_lis(nums):
+    #Prints one of the Longest Increasing Subsequences in nums.
+    if not nums:
+        print([])
+        return
+
+    n = len(nums)
+    dp = [1] * n
+    prev = [-1] * n
+
+    # Fill dp[] and track predecessors for reconstruction
+    for i in range(n):
+        for j in range(i):
+            if nums[j] < nums[i] and dp[j] + 1 > dp[i]:
+                dp[i] = dp[j] + 1
+                prev[i] = j
+
+    # Find the index of the maximum value in dp[]
+    lis_len = max(dp)
+    lis_idx = dp.index(lis_len)
+
+    # Reconstruct the LIS sequence
+    seq = []
+    while lis_idx != -1:
+        seq.append(nums[lis_idx])
+        lis_idx = prev[lis_idx]
+    seq.reverse()
+    print(seq)
 
 
 if __name__ == '__main__':
