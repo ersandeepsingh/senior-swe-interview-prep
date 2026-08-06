@@ -30,8 +30,53 @@
 # - All elements of candidates are distinct
 # - 1 <= target <= 40
 
+from turtle import back
+
+
 def combination_sum(candidates, target):
-    pass
+    result = []
+    path = []
+    
+    def backtrack(index, sum):
+        if sum == target:
+            result.append(path.copy())
+            return
+        if sum > target:
+                return
+        for i in range(index,len(candidates)):
+            #append
+            path.append(candidates[i])
+            #explore
+            backtrack(i, sum+candidates[i])
+            #undo
+            val = path.pop()
+    
+    backtrack(0,0)
+    return result
+
+# some more optimisation
+
+def combination_sum(candidates, target):
+    result = []
+    path = []
+    def backtrack(start,remaining) -> None:
+        if remaining == 0:
+            result.append(path.copy())
+            return
+
+        for index in range(start, len(candidates)):
+            value = candidates[index]
+
+            if value > remaining:
+                break
+
+            path.append(value)
+            backtrack(index, remaining - value)
+            path.pop()
+
+    backtrack(0, target)
+    return result
+            
 
 
 if __name__ == '__main__':
