@@ -15,17 +15,18 @@ Skim the definition to recall, read the simple explanation to understand, and us
 4. [Distributed Tracing](04-Observability-Distributed-Tracing.md) — spans/traces, context propagation, OpenTelemetry, sampling, tools.
 5. [Alerting & SRE](05-Observability-Alerting-SRE.md) — SLI/SLO/SLA, error budgets, alert on symptoms, alert fatigue, on-call, availability math, MTTR, postmortems.
 6. [Health, Debugging & Profiling](06-Observability-Health-Debugging-Profiling.md) — liveness/readiness, synthetic vs RUM, prod profiling, anomaly detection.
+7. [Prometheus, Grafana, Loki & Fluent Bit](15-Observability-Prometheus-Grafana-Loki-FluentBit.md) — metrics scrape, dashboards/alerts, log labels/LogQL, log shipping agent, end-to-end debug story.
 
 ## Part B — Distributed Systems
 
-7. [Foundational Theorems](07-DistSys-Foundational-Theorems.md) — CAP, PACELC, consistency spectrum, latency vs throughput, FLP, fallacies.
-8. [Consensus & Coordination](08-DistSys-Consensus-Coordination.md) — consensus, Raft, Paxos, leader election, ZooKeeper/etcd, distributed locks, quorum, 2PC/3PC.
-9. [Replication & Partitioning](09-DistSys-Replication-Partitioning.md) — replication models, sync vs async, sharding, consistent hashing, rebalancing, read/write split, hotspots.
-10. [Consistency, Time & Ordering](10-DistSys-Consistency-Time-Ordering.md) — Lamport & vector clocks, clock issues, conflict resolution, CRDTs, idempotency, delivery semantics.
-11. [Distributed Transactions](11-DistSys-Distributed-Transactions.md) — saga, 2PC, outbox, CDC, event sourcing, CQRS, dual-write problem.
-12. [Fault Tolerance & Resilience](12-DistSys-Fault-Tolerance-Resilience.md) — failure detection, retries+backoff+jitter, circuit breaker, bulkhead, timeouts/deadlines, graceful degradation, failover, load shedding, chaos.
-13. [Messaging & Async](13-DistSys-Messaging-Async.md) — queues vs streams, Kafka internals, ordering, backpressure, DLQs, idempotent consumers.
-14. [Scalability Building Blocks](14-DistSys-Scalability-Building-Blocks.md) — horizontal vs vertical, stateless services, caching/invalidation, CDN, load balancing, probabilistic structures.
+8. [Foundational Theorems](07-DistSys-Foundational-Theorems.md) — CAP, PACELC, consistency spectrum, latency vs throughput, FLP, fallacies.
+9. [Consensus & Coordination](08-DistSys-Consensus-Coordination.md) — consensus, Raft, Paxos, leader election, ZooKeeper/etcd, distributed locks, quorum, 2PC/3PC.
+10. [Replication & Partitioning](09-DistSys-Replication-Partitioning.md) — replication models, sync vs async, sharding, consistent hashing, rebalancing, read/write split, hotspots.
+11. [Consistency, Time & Ordering](10-DistSys-Consistency-Time-Ordering.md) — Lamport & vector clocks, clock issues, conflict resolution, CRDTs, idempotency, delivery semantics.
+12. [Distributed Transactions](11-DistSys-Distributed-Transactions.md) — saga, 2PC, outbox, CDC, event sourcing, CQRS, dual-write problem.
+13. [Fault Tolerance & Resilience](12-DistSys-Fault-Tolerance-Resilience.md) — failure detection, retries+backoff+jitter, circuit breaker, bulkhead, timeouts/deadlines, graceful degradation, failover, load shedding, chaos.
+14. [Messaging & Async](13-DistSys-Messaging-Async.md) — queues vs streams, Kafka internals, ordering, backpressure, DLQs, idempotent consumers.
+15. [Scalability Building Blocks](14-DistSys-Scalability-Building-Blocks.md) — horizontal vs vertical, stateless services, caching/invalidation, CDN, load balancing, probabilistic structures.
 
 ---
 

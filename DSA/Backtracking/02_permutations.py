@@ -26,8 +26,31 @@
 # - All the integers of nums are unique
 
 def permute(nums):
-    pass
+    result = []
+    used = [False]*len(nums)
+    path = []
+    
+    def backtrack():
+        if len(path) == len(nums):
+            result.append(path.copy())
+            return
+        
+        for index in range(len(nums)):
+            if used[index]:
+                continue
+            # choose
+            path.append(nums[index])
+            used[index] = True
+            
+            #explore
+            backtrack()
+            
+            # undo
+            path.pop()
+            used[index]=False
 
+    backtrack()
+    return result
 
 if __name__ == '__main__':
     nums = [1, 2, 3]

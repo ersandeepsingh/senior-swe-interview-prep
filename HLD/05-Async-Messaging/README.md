@@ -13,3 +13,19 @@ Decouple producers from consumers, absorb traffic spikes, and fan work out witho
 | 07 | [Batch vs stream](07_batch_vs_stream.md) | Nightly ETL vs live aggregation |
 
 **How to use:** For each file — read Plain English → diagram → trade-offs → say the interview trigger phrase out loud → do the Exercise without peeking at notes.
+
+---
+
+## Messaging Queue Deep Dives
+
+Popular systems and how to choose between them:
+
+| # | Concept | One-line intent |
+|---|---------|-----------------|
+| 08 | [RabbitMQ](08_rabbitmq.md) | AMQP broker: exchanges, routing, work queues |
+| 09 | [Kafka](09_kafka.md) | Distributed event log: partitions, consumer groups, replay |
+| 10 | [Queue vs Rabbit vs Kafka vs SQS](10_mq_comparison_deep_dive.md) | Decision guide + one feature three ways + outbox |
+
+- **[08_rabbitmq.md](08_rabbitmq.md)** — Components, exchange types, patterns, reliability, order/notification examples.
+- **[09_kafka.md](09_kafka.md)** — Log architecture, partitioning, lag/replay, EOS honesty, activity-feed example.
+- **[10_mq_comparison_deep_dive.md](10_mq_comparison_deep_dive.md)** — When to pick which; SQS vs Rabbit vs Kafka; transactional outbox.

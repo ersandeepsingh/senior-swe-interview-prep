@@ -32,8 +32,11 @@
 
 class NumMatrix:
     def __init__(self, matrix):
-        pass
-
+        self.prefix = [[0]*len(matrix[0]) for _ in range(len(matrix)) ]
+        for r in range(len(matrix[0])):
+            for c in range(1,len(matrix)):
+                self.prefix[r][c] +=  self.prefix[r-1][c]
+            for 
     def sum_region(self, row1, col1, row2, col2):
         pass
 

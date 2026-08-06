@@ -28,10 +28,14 @@
 
 class NumArray:
     def __init__(self, nums):
-        pass
+        # Precompute the prefix sums for O(1) range sum queries
+        self.prefix = [0]
+        for num in nums:
+            self.prefix.append(self.prefix[-1] + num)
 
     def sum_range(self, left, right):
-        pass
+        # Use prefix sums: sum = prefix[right+1] - prefix[left]
+        return self.prefix[right + 1] - self.prefix[left]
 
 
 if __name__ == '__main__':

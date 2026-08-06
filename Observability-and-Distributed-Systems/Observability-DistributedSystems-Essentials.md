@@ -67,6 +67,15 @@ Legend: 🟢 know it · 🟡 use & compare · 🔴 design/defend · ⭐ high-fre
 - **Profiling in prod** — continuous profiling (pprof, flame graphs). 🔴
 - **Anomaly detection** — baselines, alerting on deviation. 🔴
 
+## 6b. Grafana stack tools ⭐
+
+Deep dive: [`15-Observability-Prometheus-Grafana-Loki-FluentBit.md`](15-Observability-Prometheus-Grafana-Loki-FluentBit.md)
+
+- **Prometheus** — pull scrape, PromQL, labels/cardinality, exporters, Alertmanager. 🔴⭐
+- **Grafana** — dashboards, Explore, unified alerting across Prom/Loki/Tempo. 🟡⭐
+- **Loki** — label-indexed logs, LogQL, cheap vs ELK trade-off. 🟡⭐
+- **Fluent Bit** — DaemonSet log shipper: input → filter → output to Loki. 🟡⭐
+
 ---
 
 # PART B — DISTRIBUTED SYSTEMS
@@ -165,3 +174,5 @@ Observability: three pillars + when to use each, RED/USE/four-golden-signals, SL
 Distributed systems: CAP/PACELC, consistency models, consistent hashing, replication (sync/async, leader models), quorums, idempotency & delivery semantics, saga/outbox/CDC, circuit breaker + retries-with-jitter, Raft at a high level, Kafka partition/consumer-group model.
 
 The senior signal throughout: **name the trade-off, name the failure mode, name the mitigation.** e.g. "async replication → lower write latency but replication lag → stale reads → mitigate with read-your-writes or route critical reads to the leader."
+
+

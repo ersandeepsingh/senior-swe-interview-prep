@@ -23,7 +23,41 @@
 # - All the numbers of nums are unique
 
 def subsets(nums):
-    pass
+    result = []
+    path = []
+    
+    def backtrack(index):
+        # base
+        if len(nums) == index:
+            result.append(path.copy())
+            return
+        #include
+        path.append(nums[index])
+        backtrack(index+1)
+        path.pop()
+        
+        #exclude
+        backtrack(index+1)
+    
+    backtrack(0)
+    return result
+
+#Approach 2: Add every partial solution
+
+def subsets(nums):
+    result = []
+    path = []
+    def backtrack(index):
+        # Every path is a valid subset
+        result.append(path.copy())
+        
+        for i in range(index, len(nums)):
+            path.append(nums[i])
+            backtrack(i+1)
+            path.pop()
+    
+    backtrack(0)
+    return result
 
 
 if __name__ == '__main__':
