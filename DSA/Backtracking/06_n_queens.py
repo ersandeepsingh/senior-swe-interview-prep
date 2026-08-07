@@ -26,7 +26,54 @@
 # - 1 <= n <= 9
 
 def solve_n_queens(n):
-    pass
+    result = []
+    board = [["."] * n for _ in range(n)]
+
+    cols = set()
+    diag1 = set()   # row - col
+    diag2 = set()   # row + col
+
+    
+    def backtrack(row):
+        if row == n:
+            result.append(
+                ["".join(board_row) for board_row in board]
+            )
+            return
+        for col in range(n):
+
+            # Pruning
+            if (
+                col in cols
+                or row - col in diag1
+                or row + col in diag2
+            ):
+                continue
+
+            # ----------------
+            # CHOOSE
+            # ----------------
+            board[row][col] = "Q"
+
+            cols.add(col)
+            diag1.add(row - col)
+            diag2.add(row + col)
+
+            # ----------------
+            # EXPLORE
+            # ----------------
+            backtrack(row + 1)
+
+            # ----------------
+            # UNDO
+            # ----------------
+            board[row][col] = "."
+
+            cols.remove(col)
+            diag1.remove(row - col)
+            diag2.remove(row + col)
+
+    backtrack(0)
 
 
 if __name__ == '__main__':

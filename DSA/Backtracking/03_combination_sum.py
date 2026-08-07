@@ -49,7 +49,7 @@ def combination_sum(candidates, target):
             #explore
             backtrack(i, sum+candidates[i])
             #undo
-            val = path.pop()
+            path.pop()
     
     backtrack(0,0)
     return result

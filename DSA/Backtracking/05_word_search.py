@@ -32,7 +32,36 @@
 # - board and word consist of only lowercase and uppercase English letters
 
 def exist(board, word):
-    pass
+    rows = len(board)
+    colums = len(board[0])
+    visited = set()
+    #explore each valid path using backtrack until we find the work 
+    def backtrack(row, col, index):
+        if index == len(word): # word found
+            return True
+        if row<0 or row >= rows or col<0 or col>=colums:
+            return False
+        
+        if board[row][col] != word[index] or (row,col) in visited:
+            return False
+        
+        visited.add((row,col))
+        
+        found = (backtrack(row-1,col,index+1) or
+        backtrack(row+1,col,index+1) or
+        backtrack(row,col-1,index+1) or
+        backtrack(row,col+1,index+1) )
+        
+        visited.remove((row,col))
+        return found
+        
+    for row in range(rows):
+        for col in range(colums):
+            if word[0] == board[row][col]:
+                val = backtrack(row, col, 0)
+                if val == True:
+                    return True
+    return False
 
 
 if __name__ == '__main__':

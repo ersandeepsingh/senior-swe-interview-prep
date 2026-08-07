@@ -20,7 +20,29 @@
 # - 1 <= n <= 8
 
 def generate_parenthesis(n):
-    pass
+    result = []
+    path = []
+    
+    def backtrack(open,close):
+        if len(path) == 2*n:
+            result.append(path.copy())
+            return
+        
+        # add open and explore
+        if open < n:
+            path.append("(")
+            backtrack(open+1,close)
+            path.pop()
+        
+         # add close and explore
+        if close<open:
+            path.append(")")
+            backtrack(open,close+1)
+            path.pop()
+        
+    
+    backtrack(0,0)
+    return result
 
 
 if __name__ == '__main__':
