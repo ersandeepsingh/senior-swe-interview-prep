@@ -27,6 +27,9 @@
 # - -1000 <= Node.val <= 1000
 # - -1000 <= targetSum <= 1000
 
+from unittest import result
+
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -34,9 +37,36 @@ class TreeNode:
         self.right = right
 
 def has_path_sum(root, target_sum):
-    pass
+    def dfs(node, remaining):
+        if node == None:
+            return
+        remaining -= node.val
+        if not node.left and not node.right:
+            return remaining ==0
+        
+        return (dfs(node.left, remaining) or
+            dfs(node.right, remaining))
+    return dfs(root,target_sum)
 
 
+def all_path_with_sum(root,target):
+    result = []
+    path = []
+    def dfs(node, remaining):
+        if node == None:
+            return
+        path.append(node.val)
+        remaining -= node.val
+        if not node.left and not node.right and remaining ==0:
+                result.append(path.copy())
+        dfs(node.left, remaining)
+        dfs(node.right, remaining)
+        path.pop()
+    dfs(root,target)
+    return result
+
+
+    
 if __name__ == '__main__':
     # root = [5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1], targetSum = 22
     root = TreeNode(5,
@@ -44,4 +74,6 @@ if __name__ == '__main__':
         TreeNode(8, TreeNode(13), TreeNode(4, None, TreeNode(1))))
     target_sum = 22
     ans = has_path_sum(root, target_sum)
+    paths = all_path_with_sum(root, target_sum)
     print(ans)
+    print(paths)

@@ -32,8 +32,21 @@ class TreeNode:
         self.right = right
 
 def diameter_of_binary_tree(root):
-    pass
-
+    diameter = 0
+    
+    def dfs(node) -> int:
+        nonlocal diameter
+        if not node:
+            return 0
+        
+        left = dfs(node.left)
+        right = dfs(node.right)
+        
+        diameter = max(diameter , left+right)
+        
+        return 1 + max(left, right)
+    dfs(root)  
+    return diameter
 
 if __name__ == '__main__':
     root = TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3))
